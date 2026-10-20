@@ -76,13 +76,13 @@ public class MecanumDriveSubsystem {
         double rotY = y;
         double denominator = Math.max(Math.abs(x) + Math.abs(y) + Math.abs(rx), 1);
 
-        if(gamepad.x && toggle){
+        if(gamepad.left_bumper && toggle){
             toggle = false;
         }
-        else if(gamepad.x){
+        else if(gamepad.left_bumper){
             toggle = true;
         }
-        if (gamepad.left_bumper) {
+        if (toggle) {
 
             leftFront.setPower((-rotY-rotX+rx) / denominator * 0.5);
             leftBack.setPower((-rotY+rotX+rx) / denominator * 0.5);
