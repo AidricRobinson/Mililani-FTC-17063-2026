@@ -13,9 +13,9 @@ public class FeederCommand {
         this.gamepad = gamepad;
     }
 
-    public void operate(Gamepad gamepad)
+    public void operate()
     {
-        if(gamepad.left_trigger >= 0.2)
+        if(gamepad.right_trigger >= 0.2)
         {
             feederSubsystem.setPower(.5);//tbd
         }

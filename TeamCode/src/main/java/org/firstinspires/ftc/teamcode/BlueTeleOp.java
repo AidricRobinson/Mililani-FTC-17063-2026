@@ -70,10 +70,10 @@ public class BlueTeleOp extends OpMode {
 
 
         mecanumDriveSubsystem.operate(gamepad1, telemetry);
-        flywheelCommand.operate(gamepad2);
-        intakeCommand.operate(gamepad1);
-        feederCommand.operate(gamepad2);
-        flowerCommand.operate(gamepad1);
+        flywheelCommand.operate();
+        intakeCommand.operate();
+        feederCommand.operate();
+        flowerCommand.operate();
 
     }
     public void stop(){

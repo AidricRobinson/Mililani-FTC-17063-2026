@@ -82,19 +82,19 @@ public class MecanumDriveSubsystem {
         else if(gamepad.x){
             toggle = true;
         }
-//        if (gamepad.right_trigger > 0.2) {
-//
+        if (gamepad.left_bumper) {
+
             leftFront.setPower((-rotY-rotX+rx) / denominator * 0.5);
             leftBack.setPower((-rotY+rotX+rx) / denominator * 0.5);
             rightFront.setPower((-rotY+rotX-rx) / denominator * 0.5);
             rightBack.setPower((-rotY-rotX-rx) / denominator * 0.5);
-//        }
-//        else {
-//            leftFront.setPower((-rotY-rotX+rx) / denominator);
-//            leftBack.setPower((-rotY+rotX+rx) / denominator);
-//            rightFront.setPower((-rotY+rotX-rx) / denominator);
-//            rightBack.setPower((-rotY-rotX-rx)/ denominator);
-//        }
+        }
+        else {
+            leftFront.setPower((-rotY-rotX+rx) / denominator);
+            leftBack.setPower((-rotY+rotX+rx) / denominator);
+            rightFront.setPower((-rotY+rotX-rx) / denominator);
+            rightBack.setPower((-rotY-rotX-rx)/ denominator);
+        }
 
         telemetry.addData("Slow mode", slowModeOn);
         telemetry.update();

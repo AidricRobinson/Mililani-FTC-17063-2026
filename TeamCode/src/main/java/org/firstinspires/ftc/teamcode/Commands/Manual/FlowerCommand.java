@@ -14,7 +14,7 @@ public class FlowerCommand {
         this.flowerSubsystem = flowerSubsystem;
         this.gamepad = gamepad;
     }
-    public void operate(Gamepad gamepad){
+    public void operate(){
         if(gamepad.left_bumper)
         {
             flowerSubsystem.setFlowerServoPosition(1);//tbd

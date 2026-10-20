@@ -15,13 +15,13 @@ public class IntakeCommand {
 
     }
 
-    public void operate(Gamepad gamepad)
+    public void operate()
     {
-        if(gamepad.x)
+        if(gamepad.right_trigger > 0.2)
         {
             intakeSubsystem.setPower(1);
         }
-        else if (gamepad.a){
+        else if (gamepad.left_trigger > 0.2){
             intakeSubsystem.setPower(-1);
         }
         else

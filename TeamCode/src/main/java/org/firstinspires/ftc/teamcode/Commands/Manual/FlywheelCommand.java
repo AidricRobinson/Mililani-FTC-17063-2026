@@ -19,7 +19,7 @@ public class FlywheelCommand {
 //        this.limeLightCommand = limeLightCommand;
         this.pidController = new PIDController(0.005, 0, 0, .10);
     }
-    public void operate(Gamepad gamepad){
+    public void operate(){
         double targetRpm = 0;
         if (gamepad.x){
             targetRpm = 1700;//idk

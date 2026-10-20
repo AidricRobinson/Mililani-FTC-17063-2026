@@ -52,7 +52,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSubsystem;
             //mecanumDriveSubsystem.operate(gamepad1, telemetry);
             keikiFairCommand.Operate(gamepad1);
             mecanumDriveSubsystem.operate(gamepad1, telemetry);
-            feederCommand.operate(gamepad1);
+            feederCommand.operate();
         }
         public void stop(){
             //mecanumDriveSubsystem.shutdown();
