@@ -20,6 +20,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSubsystem;
     @TeleOp(name="KeikiFairTeleOp")
 
     public class KeikiFairTeleOp extends OpMode {
+        //asdfasfasdfasf
         private KeikiFairCommand keikiFairCommand;
         private FlywheelSubsystem flywheelSubsystem;
         private IntakeSubsystem intakeSubsystem;
