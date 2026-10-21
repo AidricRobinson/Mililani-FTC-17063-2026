@@ -3,6 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Constants;
 
 public class FlywheelSubsystem {
@@ -24,7 +25,7 @@ public class FlywheelSubsystem {
         FlywheelMotor.setVelocity(rpm);
     }
     public double getFlywheelVelocity(){
-        return FlywheelMotor.getVelocity();
+        return FlywheelMotor.getVelocity(AngleUnit.DEGREES);
     }
     public void shutdown(){
         FlywheelMotor.setPower(0);
