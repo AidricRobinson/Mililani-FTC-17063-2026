@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.FlowerSubsystem;
 
 public class FlowerCommand {
     FlowerSubsystem flowerSubsystem;
+    boolean toggle = true;
 
     Gamepad gamepad;
     public FlowerCommand(FlowerSubsystem flowerSubsystem, Gamepad gamepad){
@@ -15,10 +16,15 @@ public class FlowerCommand {
         this.gamepad = gamepad;
     }
     public void operate(){
-        if(gamepad.left_bumper)
+        if(gamepad.right_bumper && toggle)
         {
             flowerSubsystem.setFlowerServoPosition(1);//tbd
+            toggle = false;
 
+        }
+        else if(!gamepad.right_bumper)
+        {
+            toggle = true;
         }
 
         if( gamepad.left_trigger >= 0.2)

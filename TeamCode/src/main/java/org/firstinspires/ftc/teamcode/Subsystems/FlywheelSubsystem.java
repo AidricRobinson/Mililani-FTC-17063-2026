@@ -12,7 +12,7 @@ public class FlywheelSubsystem {
     public FlywheelSubsystem(OpMode opMode) {
         FlywheelMotor  = opMode.hardwareMap.get(DcMotorEx.class, "Flywheel");
         FlywheelMotor.setDirection(Constants.MotorConstants.shooterDirection);
-        FlywheelMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        FlywheelMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         FlywheelMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
     }
     public void setFlywheelPower(double power){
@@ -21,11 +21,11 @@ public class FlywheelSubsystem {
     public double getFlywheelEncoder(){
         return FlywheelMotor.getCurrentPosition();
     }
-    public void setFlywheelVelocity(double rpm){
-        FlywheelMotor.setVelocity(rpm);
+    public void setRPM(double rpm){
+        FlywheelMotor.setVelocity(rpm * 28 / 60);
     }
-    public double getFlywheelVelocity(){
-        return FlywheelMotor.getVelocity(AngleUnit.DEGREES);
+    public double getRPM(){
+        return FlywheelMotor.getVelocity() / 28 * 60;
     }
     public void shutdown(){
         FlywheelMotor.setPower(0);

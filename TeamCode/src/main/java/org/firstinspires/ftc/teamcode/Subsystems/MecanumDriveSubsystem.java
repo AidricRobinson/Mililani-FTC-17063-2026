@@ -68,36 +68,29 @@ public class MecanumDriveSubsystem {
         double botHeading = getYawRadians();
 
         //actual field oriented
-//        double rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
-//        double rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
+        double rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
+        double rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
 
         //a quick way to de-field orient the code
-        double rotX = x;
-        double rotY = y;
+//        double rotX = x;
+//        double rotY = y;
         double denominator = Math.max(Math.abs(x) + Math.abs(y) + Math.abs(rx), 1);
 
-        if(gamepad.left_bumper && toggle){
-            toggle = false;
-        }
-        else if(gamepad.left_bumper){
-            toggle = true;
-        }
-        if (toggle) {
 
-            leftFront.setPower((-rotY-rotX+rx) / denominator * 0.5);
-            leftBack.setPower((-rotY+rotX+rx) / denominator * 0.5);
-            rightFront.setPower((-rotY+rotX-rx) / denominator * 0.5);
-            rightBack.setPower((-rotY-rotX-rx) / denominator * 0.5);
+        if (gamepad.left_bumper) {
+
+            leftFront.setPower((-rotY+rotX+rx) / denominator * 0.5);
+            leftBack.setPower((-rotY-rotX+rx) / denominator * 0.5);
+            rightFront.setPower((-rotY-rotX-rx) / denominator * 0.5);
+            rightBack.setPower((-rotY+rotX-rx) / denominator * 0.5);
         }
         else {
-            leftFront.setPower((-rotY-rotX+rx) / denominator);
-            leftBack.setPower((-rotY+rotX+rx) / denominator);
-            rightFront.setPower((-rotY+rotX-rx) / denominator);
-            rightBack.setPower((-rotY-rotX-rx)/ denominator);
+            leftFront.setPower((-rotY+rotX+rx) / denominator);
+            leftBack.setPower((-rotY-rotX+rx) / denominator);
+            rightFront.setPower((-rotY-rotX-rx) / denominator);
+            rightBack.setPower((-rotY+rotX-rx)/ denominator);
         }
 
-        telemetry.addData("Slow mode", slowModeOn);
-        telemetry.update();
 
     }
 
