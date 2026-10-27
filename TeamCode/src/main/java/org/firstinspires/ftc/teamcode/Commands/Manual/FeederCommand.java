@@ -20,6 +20,10 @@ public class FeederCommand {
         {
             feederSubsystem.setPower(1);//tbd
         }
+        else if(gamepad.left_bumper)
+        {
+
+        }
         else {
             feederSubsystem.setPower(0);
         }

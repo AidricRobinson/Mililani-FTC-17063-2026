@@ -18,18 +18,14 @@ public class FlowerCommand {
     public void operate(){
         if(gamepad.right_bumper && toggle)
         {
-            flowerSubsystem.setFlowerServoPosition(1);//tbd
+            flowerSubsystem.setFlowerServoPosition(1);
             toggle = false;
 
         }
         else if(!gamepad.right_bumper)
         {
-            toggle = true;
-        }
-
-        if( gamepad.left_trigger >= 0.2)
-        {
             flowerSubsystem.setFlowerServoPosition(0);
+            toggle = true;
         }
 
     }

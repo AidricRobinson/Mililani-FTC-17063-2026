@@ -47,7 +47,7 @@ public class BlueTeleOp extends OpMode {
         flywheelCommand = new FlywheelCommand(flywheelSubsystem, gamepad2/*, limeLightCommand*/, telemetry);
 
         intakeSubsystem = new IntakeSubsystem(this);
-        intakeCommand = new IntakeCommand(intakeSubsystem, gamepad1);
+        intakeCommand = new IntakeCommand(intakeSubsystem, gamepad1, gamepad2);
 
         feederSubsystem = new FeederSubsystem(this);
         feederCommand = new FeederCommand(feederSubsystem, gamepad2);

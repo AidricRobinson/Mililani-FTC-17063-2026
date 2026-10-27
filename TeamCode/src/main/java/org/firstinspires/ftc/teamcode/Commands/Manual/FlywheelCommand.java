@@ -42,12 +42,16 @@ public class FlywheelCommand {
             if (pidController.getError() <= 0) {
                 flywheelSubsystem.setFlywheelPower(0);
             }
+
             else {
                 flywheelSubsystem.setFlywheelPower(pidController.getOutput());
             }
 
 //            telemetry.addData("Output", pidController.getOutput());
 
+        }
+        else if (gamepad.dpad_down){
+            flywheelSubsystem.setFlywheelPower(-1);
         }
         else {
             flywheelSubsystem.setFlywheelPower(0);
