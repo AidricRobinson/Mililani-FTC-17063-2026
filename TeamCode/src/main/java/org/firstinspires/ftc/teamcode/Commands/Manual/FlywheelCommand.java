@@ -31,7 +31,8 @@ public class FlywheelCommand {
 //        else if (gamepad.y){
 //            targetRpm = 1500;//change values later
 //        }
-        telemetry.addData("RPM? ", flywheelSubsystem.getRPM());
+        telemetry.addData("RPM: ", flywheelSubsystem.getRPM());
+        telemetry.addData("Output: ", pidController.getOutput());
         telemetry.update();
         if (gamepad.right_trigger > 0.2){
 //            limeLightCommand.operate();

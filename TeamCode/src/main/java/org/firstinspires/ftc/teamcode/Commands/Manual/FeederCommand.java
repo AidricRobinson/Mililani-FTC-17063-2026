@@ -20,9 +20,9 @@ public class FeederCommand {
         {
             feederSubsystem.setPower(1);//tbd
         }
-        else if(gamepad.left_bumper)
+        else if(gamepad.y)
         {
-
+            feederSubsystem.setPower(-1);//tbd
         }
         else {
             feederSubsystem.setPower(0);
