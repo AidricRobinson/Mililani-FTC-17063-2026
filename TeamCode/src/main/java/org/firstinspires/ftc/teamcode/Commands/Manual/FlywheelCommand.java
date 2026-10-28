@@ -18,7 +18,7 @@ public class FlywheelCommand {
         this.gamepad = gamepad;
         this.telemetry = telemetry;
 //        this.limeLightCommand = limeLightCommand;
-        this.pidController = new PIDController(0.0025, 0, 0, 0.125);
+        this.pidController = new PIDController(0.00325, 0, 0, .2);
     }
     public void operate(){
         pidController.createSetPoint(2650);
@@ -39,13 +39,13 @@ public class FlywheelCommand {
 //            pidController.createSetPoint(targetRpm);
 //            pidController.setProcessVariable(flywheelSubsystem.getFlywhe  elVelocity());
 //            flywheelSubsystem.setFlywheelPower(pidController.getOutput());
-            if (pidController.getError() <= 0) {
-                flywheelSubsystem.setFlywheelPower(0);
-            }
-
-            else {
-                flywheelSubsystem.setFlywheelPower(pidController.getOutput());
-            }
+//            if (pidController.getError() <= 0) {
+//                flywheelSubsystem.setFlywheelPower(0);
+//            }
+//
+//            else {
+            flywheelSubsystem.setFlywheelPower(pidController.getOutput());
+//            }
 
 //            telemetry.addData("Output", pidController.getOutput());
 

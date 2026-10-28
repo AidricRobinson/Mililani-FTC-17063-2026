@@ -19,11 +19,11 @@ public class IntakeCommand {
 
     public void operate()
     {
-        if(gamepad1.right_trigger > 0.2 || gamepad2.right_trigger > 0.2 )
+        if(gamepad1.right_trigger > 0.2 || gamepad2.left_trigger > 0.2)
         {
             intakeSubsystem.setPower(1);
         }
-        else if (gamepad1.left_trigger > 0.2 || gamepad2.left_trigger > 0.2){
+        else if (gamepad1.left_trigger > 0.2 || gamepad2.left_bumper){
             intakeSubsystem.setPower(-1);
         }
         else
