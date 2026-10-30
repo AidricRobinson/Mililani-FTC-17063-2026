@@ -19,8 +19,8 @@ public class ShooterTestTeleOp extends OpMode{
     boolean toggle2 = true;// eletric boogaloo
 
     boolean toggle3 = true; //step
-    public static double kp = 0;
-    public static double kff = 0;
+    public static double kp = 0.00325;
+    public static double kff = 0.2;
     public double[] stepSizes= {.1, .01, .001, .0001, .00001};
     public int stepIndex = 0;
 
