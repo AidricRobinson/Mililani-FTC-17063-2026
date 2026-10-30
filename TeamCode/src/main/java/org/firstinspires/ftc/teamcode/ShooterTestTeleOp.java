@@ -5,9 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Commands.Manual.FeederCommand;
 import org.firstinspires.ftc.teamcode.Commands.Manual.FlywheelCommand;
+import org.firstinspires.ftc.teamcode.Commands.Manual.IntakeCommand;
 import org.firstinspires.ftc.teamcode.Commands.Manual.LimeLightCommand;
+import org.firstinspires.ftc.teamcode.Subsystems.FeederSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.FlywheelSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 
 
 @TeleOp(name="ShooterTestTeleOp")
@@ -15,6 +19,10 @@ public class ShooterTestTeleOp extends OpMode{
 
     FlywheelSubsystem flywheelSubsystem;
     PIDController pidController;
+    private IntakeSubsystem intakeSubsystem;
+    private IntakeCommand intakeCommand;
+    private FeederSubsystem feederSubsystem;
+    private FeederCommand feederCommand;
     boolean toggle1 = true;
     boolean toggle2 = true;// eletric boogaloo
 
@@ -28,7 +36,11 @@ public class ShooterTestTeleOp extends OpMode{
         @Override
         public void init() {
             flywheelSubsystem = new FlywheelSubsystem(this);
+            intakeSubsystem = new IntakeSubsystem(this);
+            intakeCommand = new IntakeCommand(intakeSubsystem, gamepad1,gamepad2);
 
+            feederSubsystem = new FeederSubsystem(this);
+            feederCommand = new FeederCommand(feederSubsystem, gamepad2);
 
         }
         @Override
@@ -36,7 +48,8 @@ public class ShooterTestTeleOp extends OpMode{
             pidController = new PIDController(kp, 0,0,kff);
             pidController.createSetPoint(2650);
             pidController.setProcessVariable(flywheelSubsystem.getRPM());
-
+            intakeCommand.operate();
+            feederCommand.operate();
 
 
 
@@ -103,6 +116,8 @@ public class ShooterTestTeleOp extends OpMode{
         }
         public void stop(){
             flywheelSubsystem.shutdown();
+            intakeSubsystem.shutdown();
+            feederSubsystem.shutdown();
         }
     }
 
