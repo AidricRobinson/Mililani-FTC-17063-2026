@@ -23,9 +23,9 @@ public class FlywheelCommand {
         this.telemetry = telemetry;
 //        this.limeLightCommand = limeLightCommand;
         this.pidController = new PIDController(0.00325, 0, 0, .2);
-        kP = .00005;
+        kP = .0000125;
         kFF = 1/5000.0;
-        setPoint = 2400;//2650
+        setPoint = 2350;//2650 maybe 2600
     }
     public void operate(){
         pidController.createSetPoint(setPoint);
@@ -55,7 +55,9 @@ public class FlywheelCommand {
 //            else {
             double output = kP * (setPoint - flywheelSubsystem.getRPM()) + kFF*setPoint;
             output = Math.min(output, 1);
-            flywheelSubsystem.setFlywheelPower(output);
+            //flywheelSubsystem.setFlywheelPower(output);
+6
+            flywheelSubsystem.setFlywheelPower(.5);
 //            flywheelSubsystem.setFlywheelPower(1);
 //            }
 
