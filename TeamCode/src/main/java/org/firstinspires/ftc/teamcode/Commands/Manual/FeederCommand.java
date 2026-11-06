@@ -18,11 +18,15 @@ public class FeederCommand {
     {
         if(gamepad.right_bumper)
         {
-            feederSubsystem.setPower(1);//tbd
+            feederSubsystem.setPower(-1);//tbd
         }
         else if(gamepad.y)
         {
-            feederSubsystem.setPower(-1);//tbd
+            feederSubsystem.setPower(1);//tbd
+        }
+        else if(gamepad.x)
+        {
+            feederSubsystem.setPower(-1);
         }
         else {
             feederSubsystem.setPower(0);

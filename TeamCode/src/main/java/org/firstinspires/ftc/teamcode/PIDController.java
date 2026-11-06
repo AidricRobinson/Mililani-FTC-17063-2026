@@ -13,7 +13,7 @@ public class PIDController {
     private double derivative;
     private double kD;
     private double prevError = 0;
-    private double prevPos = 0;
+    //private double prevPos = 0;
     public PIDController (double kP, double kI, double kD, double kFF) {
         this.kP = kP;
         this.kI = kI;

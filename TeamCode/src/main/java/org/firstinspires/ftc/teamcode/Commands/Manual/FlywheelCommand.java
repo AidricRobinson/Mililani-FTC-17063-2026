@@ -13,15 +13,22 @@ public class FlywheelCommand {
     Telemetry telemetry;
     Gamepad gamepad;
 
+    private final double kP;
+    private final double kFF;
+    private final double setPoint;
+
     public FlywheelCommand(FlywheelSubsystem flywheelSubsystem, Gamepad gamepad,/*, Limelight limelight*/ Telemetry telemetry){
         this.flywheelSubsystem = flywheelSubsystem;
         this.gamepad = gamepad;
         this.telemetry = telemetry;
 //        this.limeLightCommand = limeLightCommand;
         this.pidController = new PIDController(0.00325, 0, 0, .2);
+        kP = .00005;
+        kFF = 1/5000.0;
+        setPoint = 2400;//2650
     }
     public void operate(){
-        pidController.createSetPoint(2650);
+        pidController.createSetPoint(setPoint);
         pidController.setProcessVariable(flywheelSubsystem.getRPM());
 
 //        double targetRpm = 0;
@@ -34,6 +41,7 @@ public class FlywheelCommand {
         telemetry.addData("RPM: ", flywheelSubsystem.getRPM());
         telemetry.addData("Output: ", pidController.getOutput());
         telemetry.update();
+
         if (gamepad.right_trigger > 0.2){
 //            limeLightCommand.operate();
 
@@ -45,10 +53,16 @@ public class FlywheelCommand {
 //            }
 //
 //            else {
-            flywheelSubsystem.setFlywheelPower(pidController.getOutput());
+            double output = kP * (setPoint - flywheelSubsystem.getRPM()) + kFF*setPoint;
+            output = Math.min(output, 1);
+            flywheelSubsystem.setFlywheelPower(output);
+//            flywheelSubsystem.setFlywheelPower(1);
 //            }
 
-//            telemetry.addData("Output", pidController.getOutput());
+//            telemetry.addData("Output", pidController.getOutput())
+
+//
+//
 
         }
         else if (gamepad.dpad_down){

@@ -37,7 +37,7 @@ public class ShooterTestTeleOp extends OpMode{
         public void init() {
             flywheelSubsystem = new FlywheelSubsystem(this);
             intakeSubsystem = new IntakeSubsystem(this);
-            intakeCommand = new IntakeCommand(intakeSubsystem, gamepad1,gamepad2);
+            intakeCommand = new IntakeCommand(intakeSubsystem,gamepad1,gamepad2);
 
             feederSubsystem = new FeederSubsystem(this);
             feederCommand = new FeederCommand(feederSubsystem, gamepad2);
