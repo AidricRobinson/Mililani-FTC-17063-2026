@@ -52,8 +52,7 @@ public class AutoMain extends LinearOpMode {
        encoderFlywheelCommand = new EncoderFlywheelCommand(flywheelSubsystem, elapsedTime);
        encoderStrafingCommand = new EncoderStrafingCommand(mecanumDriveSubsystem,this);
        encoderTurningCommand = new EncoderTurningCommand(mecanumDriveSubsystem,this);
-       encoderIntakeCommand = new EncoderIntakeCommand(intakeSubsystem, elapsedTime)
-;
+       encoderIntakeCommand = new EncoderIntakeCommand(intakeSubsystem, elapsedTime);
 
         waitForStart();
         //Initial shoot
@@ -79,7 +78,7 @@ public class AutoMain extends LinearOpMode {
 
         //Move to shoot again
         encoderDriveCommand.EncoderDriveOperate(-12, "BACKWARD");
-        encoderStrafingCommand.EncoderDriveOperate(-12, "RIGHT");
+        encoderStrafingCommand.EncoderDriveOperate(12, "RIGHT");
         encoderTurningCommand.EncoderTurningOperate(101, "RIGHT");
         encoderDriveCommand.EncoderDriveOperate(124, "FORWARD");
         encoderTurningCommand.EncoderTurningOperate(169, "LEFT");

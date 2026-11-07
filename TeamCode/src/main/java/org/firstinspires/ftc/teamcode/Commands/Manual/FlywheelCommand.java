@@ -56,7 +56,7 @@ public class FlywheelCommand {
             double output = kP * (setPoint - flywheelSubsystem.getRPM()) + kFF*setPoint;
             output = Math.min(output, 1);
             //flywheelSubsystem.setFlywheelPower(output);
-6
+
             flywheelSubsystem.setFlywheelPower(.5);
 //            flywheelSubsystem.setFlywheelPower(1);
 //            }
