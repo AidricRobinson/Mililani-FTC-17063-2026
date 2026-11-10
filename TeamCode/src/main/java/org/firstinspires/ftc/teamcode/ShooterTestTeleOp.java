@@ -29,7 +29,7 @@ public class ShooterTestTeleOp extends OpMode{
     boolean toggle3 = true; //step
     public static double kp = 0.00325;
     public static double kff = 0.2;
-    public double[] stepSizes= {.1, .01, .001, .0001, .00001};
+    public double[] stepSizes= {.1, .01, .001, .0001, .00001, .000001};
     public int stepIndex = 0;
 
 
@@ -46,6 +46,7 @@ public class ShooterTestTeleOp extends OpMode{
         @Override
         public void loop() {
             pidController = new PIDController(kp, 0,0,kff);
+            kff = 0.05;
             pidController.createSetPoint(2650);
             pidController.setProcessVariable(flywheelSubsystem.getRPM());
             intakeCommand.operate();

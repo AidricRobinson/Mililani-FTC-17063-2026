@@ -30,7 +30,8 @@ public class EncoderStrafingCommand {
                 break;
             }
 
-            double powerOutput = m_PIDController.getOutput();
+            //double powerOutput = m_PIDController.getOutput();
+            double powerOutput = .25;
             mecanumDriveSubsystem.setLeftBackPower(-powerOutput);
             mecanumDriveSubsystem.setLeftFrontPower(powerOutput);
             mecanumDriveSubsystem.setRightBackPower(powerOutput);

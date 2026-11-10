@@ -58,12 +58,14 @@ public class AutoSupport extends LinearOpMode {
         sleep(Constants.WaitTime.supportAutoWait);
 
         //shoot
-        encoderFlywheelCommand.EncoderFlywheelOperate(1);
-        encoderFeederCommand.encoderFeederOperate(0.5);
+        encoderFlywheelCommand.EncoderFlywheelOperate(.5);
+        sleep(2000);
+        encoderIntakeCommand.EncoderIntakeOperate(1);
+        encoderFeederCommand.encoderFeederOperate(1);
         sleep(5000);
 
         //park
-        encoderDriveCommand.EncoderDriveOperate(14, "Forward");
+        encoderDriveCommand.EncoderDriveOperate(-14, "BACKWARD");
         encoderStrafingCommand.EncoderDriveOperate(60, "Right");
 
 

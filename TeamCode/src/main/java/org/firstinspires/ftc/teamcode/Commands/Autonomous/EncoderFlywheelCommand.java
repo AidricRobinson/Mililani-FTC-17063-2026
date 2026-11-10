@@ -18,9 +18,10 @@ public class EncoderFlywheelCommand {
     }
     public void EncoderFlywheelOperate(double power){
         startTime = elapsedTime.milliseconds();
-        while(elapsedTime.milliseconds() < startTime + 2000) {//tbd
-            flywheelSubsystem.setFlywheelPower(power);
-        }
+//        while(elapsedTime.milliseconds() < startTime + 2000) {//tbd
+//            flywheelSubsystem.setFlywheelPower(power);
+//        }
+        flywheelSubsystem.setFlywheelPower(power);
     }
     public void shutdown(){
         flywheelSubsystem.shutdown();

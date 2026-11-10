@@ -26,8 +26,8 @@ public class RedTeleOp extends OpMode {
     private IntakeSubsystem intakeSubsystem;
     private IntakeCommand intakeCommand;
 
-    private FlowerSubsystem flowerSubsystem;
-    private FlowerCommand flowerCommand;
+    //private FlowerSubsystem flowerSubsystem;
+    //private FlowerCommand flowerCommand;
 
     private FeederSubsystem feederSubsystem;
     private FeederCommand feederCommand;
@@ -52,8 +52,8 @@ public class RedTeleOp extends OpMode {
         feederSubsystem = new FeederSubsystem(this);
         feederCommand = new FeederCommand(feederSubsystem, gamepad2);
 
-        flowerSubsystem = new FlowerSubsystem(this);
-        flowerCommand = new FlowerCommand(flowerSubsystem, gamepad1);
+        //flowerSubsystem = new FlowerSubsystem(this);
+        //flowerCommand = new FlowerCommand(flowerSubsystem, gamepad1);
 
 
 
@@ -72,14 +72,14 @@ public class RedTeleOp extends OpMode {
         flywheelCommand.operate();
         intakeCommand.operate();
         feederCommand.operate();
-        flowerCommand.operate();
+        //flowerCommand.operate();
 
     }
     public void stop(){
         mecanumDriveSubsystem.shutdown();
         flywheelSubsystem.shutdown();
         intakeSubsystem.shutdown();
-        flowerSubsystem.shutdown();
+        //flowerSubsystem.shutdown();
         feederSubsystem.shutdown();
     }
 }

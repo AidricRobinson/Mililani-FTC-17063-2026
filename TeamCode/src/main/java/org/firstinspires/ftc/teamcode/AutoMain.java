@@ -56,24 +56,28 @@ public class AutoMain extends LinearOpMode {
 
         waitForStart();
         //Initial shoot
-        encoderFlywheelCommand.EncoderFlywheelOperate(1);
-        encoderFeederCommand.encoderFeederOperate(0.25);
-        sleep(5000);
+        encoderFlywheelCommand.EncoderFlywheelOperate(.5);
+        sleep(2000);
+        encoderFeederCommand.encoderFeederOperate(1);
+        sleep(4000);
         encoderFlywheelCommand.shutdown();
         encoderFeederCommand.shutdown();
 
         //Move to garden
-        encoderDriveCommand.EncoderDriveOperate(24, "FORWARD");
-        sleep(5000);
+        encoderDriveCommand.EncoderDriveOperate(-24, "BACKWARD");
+        sleep(4000);
 
-        encoderTurningCommand.EncoderTurningOperate(-120, "LEFT");
-        sleep(5000);
+        encoderTurningCommand.EncoderTurningOperate(63.43, "RIGHT");
+        sleep(2000);
         encoderTurningCommand.shutdown();
-        encoderFeederCommand.encoderFeederOperate(0.25);
+
+
+
+        encoderFeederCommand.encoderFeederOperate(-0.25);
         encoderDriveCommand.EncoderDriveOperate(50, "FORWARD");
         encoderIntakeCommand.EncoderIntakeOperate(1);
         encoderDriveCommand.EncoderDriveOperatePower(6, 0.2, "FORWARD");
-        sleep(5000);
+        sleep(3000);
         encoderIntakeCommand.shutdown();
 
         //Move to shoot again
@@ -85,8 +89,8 @@ public class AutoMain extends LinearOpMode {
         encoderDriveCommand.EncoderDriveOperatePower(-6, 0.2, "BACKWARD");
 
         //shoot
-        encoderFlywheelCommand.EncoderFlywheelOperate(1);
-        encoderFeederCommand.encoderFeederOperate(0.25);
+        encoderFlywheelCommand.EncoderFlywheelOperate(.5);
+        encoderFeederCommand.encoderFeederOperate(1);
         sleep(2000);
         encoderFeederCommand.shutdown();
         encoderFlywheelCommand.shutdown();
