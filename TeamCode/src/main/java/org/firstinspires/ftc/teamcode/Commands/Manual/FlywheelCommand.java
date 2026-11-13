@@ -54,11 +54,11 @@ public class FlywheelCommand {
 //            }
 //
 //            else {
-            double output = kP * (setPoint - flywheelSubsystem.getRPM()) + kFF*setPoint;
-            output = Math.min(output, 1);
+            //double output = kP * (setPoint - flywheelSubsystem.getRPM()) + kFF*setPoint;
+            //output = Math.min(output, 1);
             //flywheelSubsystem.setFlywheelPower(output);
 
-            flywheelSubsystem.setFlywheelPower(.5);
+            flywheelSubsystem.setFlywheelPower(pidControllerShooter.getOutput());
 //            flywheelSubsystem.setFlywheelPower(1);
 //            }
 

@@ -45,10 +45,7 @@ public class AutoKalaniRight extends LinearOpMode {
 
 
         encoderFeederCommand = new EncoderFeederCommand(feederSubsystem, elapsedTime);
-        encoderDriveCommand = new EncoderDriveCommand(mecanumDriveSubsystem, this, telemetry);
         encoderFlywheelCommand = new EncoderFlywheelCommand(flywheelSubsystem, elapsedTime);
-        encoderStrafingCommand = new EncoderStrafingCommand(mecanumDriveSubsystem,this, telemetry);
-
         encoderIntakeCommand = new EncoderIntakeCommand(intakeSubsystem, elapsedTime);
 
 
