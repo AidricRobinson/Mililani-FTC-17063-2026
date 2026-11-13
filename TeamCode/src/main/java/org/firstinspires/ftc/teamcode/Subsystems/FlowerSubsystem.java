@@ -7,7 +7,7 @@ public class FlowerSubsystem {
     Servo flower;
 
     public FlowerSubsystem(OpMode opMode){
-        flower = opMode.hardwareMap.get(Servo.class,"FlowerServo");
+        //flower = opMode.hardwareMap.get(Servo.class,"FlowerServo");
 
     }
     public void setFlowerServoPosition(double pos){

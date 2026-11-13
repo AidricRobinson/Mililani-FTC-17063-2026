@@ -23,10 +23,11 @@ public class EncoderIntakeCommand {
     public void EncoderIntakeOperate(double power)
     {
         startTime = elapsedTime.milliseconds();
-        while(elapsedTime.milliseconds() < startTime + 2000)
-        {
-            intakeSubsystem.setPower(power);
-        }
+        intakeSubsystem.setPower(power);
+//        while(elapsedTime.milliseconds() < startTime + 2000)
+//        {
+//            intakeSubsystem.setPower(power);
+//        }
     }
 
     public void shutdown()

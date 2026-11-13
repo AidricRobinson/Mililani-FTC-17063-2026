@@ -4,12 +4,13 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.PIDController;
+import org.firstinspires.ftc.teamcode.PIDControllerShooter;
 import org.firstinspires.ftc.teamcode.Subsystems.FlywheelSubsystem;
 
 public class FlywheelCommand {
     FlywheelSubsystem flywheelSubsystem;
     LimeLightCommand limeLightCommand;
-    PIDController pidController;
+    PIDControllerShooter pidControllerShooter;
     Telemetry telemetry;
     Gamepad gamepad;
 
@@ -22,14 +23,14 @@ public class FlywheelCommand {
         this.gamepad = gamepad;
         this.telemetry = telemetry;
 //        this.limeLightCommand = limeLightCommand;
-        this.pidController = new PIDController(0.00325, 0, 0, .2);
+        this.pidControllerShooter = new PIDControllerShooter(0.0036, 0.00019, .002);
         kP = .0000125;
         kFF = 1/5000.0;
-        setPoint = 2350;//2650 maybe 2600
+        setPoint = 2600;//2650 maybe 2600 is 2350
     }
     public void operate(){
-        pidController.createSetPoint(setPoint);
-        pidController.setProcessVariable(flywheelSubsystem.getRPM());
+        pidControllerShooter.createSetPoint(setPoint);
+        pidControllerShooter.setProcessVariable(flywheelSubsystem.getRPM());
 
 //        double targetRpm = 0;
 //        if (gamepad.x){
@@ -39,7 +40,7 @@ public class FlywheelCommand {
 //            targetRpm = 1500;//change values later
 //        }
         telemetry.addData("RPM: ", flywheelSubsystem.getRPM());
-        telemetry.addData("Output: ", pidController.getOutput());
+        telemetry.addData("Output: ", pidControllerShooter.getOutput());
         telemetry.update();
 
         if (gamepad.right_trigger > 0.2){

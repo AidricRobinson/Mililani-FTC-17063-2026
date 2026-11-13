@@ -46,27 +46,30 @@ public class AutoSupport extends LinearOpMode {
 
 
         encoderFeederCommand = new EncoderFeederCommand(feederSubsystem, elapsedTime);
-        encoderDriveCommand = new EncoderDriveCommand(mecanumDriveSubsystem, this);
+        encoderDriveCommand = new EncoderDriveCommand(mecanumDriveSubsystem, this, telemetry);
         encoderFlywheelCommand = new EncoderFlywheelCommand(flywheelSubsystem, elapsedTime);
-        encoderStrafingCommand = new EncoderStrafingCommand(mecanumDriveSubsystem, this);
-        encoderTurningCommand = new EncoderTurningCommand(mecanumDriveSubsystem, this);
+        encoderStrafingCommand = new EncoderStrafingCommand(mecanumDriveSubsystem, this, telemetry);
+        encoderTurningCommand = new EncoderTurningCommand(mecanumDriveSubsystem, this, telemetry  );
         encoderIntakeCommand = new EncoderIntakeCommand(intakeSubsystem, elapsedTime)
         ;
 
         waitForStart();
         //wait to shoot
-        sleep(Constants.WaitTime.supportAutoWait);
+        //sleep(Constants.WaitTime.supportAutoWait);
 
         //shoot
         encoderFlywheelCommand.EncoderFlywheelOperate(.5);
         sleep(2000);
-        encoderIntakeCommand.EncoderIntakeOperate(1);
+        encoderIntakeCommand.EncoderIntakeOperate(.45);
         encoderFeederCommand.encoderFeederOperate(1);
         sleep(5000);
+        encoderFlywheelCommand.shutdown();
+        encoderIntakeCommand.shutdown();
+        encoderFeederCommand.shutdown();
 
         //park
         encoderDriveCommand.EncoderDriveOperate(-14, "BACKWARD");
-        encoderStrafingCommand.EncoderDriveOperate(60, "Right");
+        encoderStrafingCommand.EncoderDriveOperate(-60, "LEFT");
 
 
 

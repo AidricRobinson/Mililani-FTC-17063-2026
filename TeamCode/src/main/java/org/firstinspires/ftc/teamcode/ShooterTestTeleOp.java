@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 public class ShooterTestTeleOp extends OpMode{
 
     FlywheelSubsystem flywheelSubsystem;
-    PIDController pidController;
+    PIDControllerShooter pidControllerShooter;
     private IntakeSubsystem intakeSubsystem;
     private IntakeCommand intakeCommand;
     private FeederSubsystem feederSubsystem;
@@ -27,8 +27,11 @@ public class ShooterTestTeleOp extends OpMode{
     boolean toggle2 = true;// eletric boogaloo
 
     boolean toggle3 = true; //step
-    public static double kp = 0.00325;
-    public static double kff = 0.2;
+    public static double kp = 0.0036;
+
+    public static double kS = 0.02;
+    public static double kV = .00019;
+    public static double kff = kV * 2600 + kS;
     public double[] stepSizes= {.1, .01, .001, .0001, .00001, .000001};
     public int stepIndex = 0;
 
@@ -45,21 +48,21 @@ public class ShooterTestTeleOp extends OpMode{
         }
         @Override
         public void loop() {
-            pidController = new PIDController(kp, 0,0,kff);
-            kff = 0.05;
-            pidController.createSetPoint(2650);
-            pidController.setProcessVariable(flywheelSubsystem.getRPM());
-            intakeCommand.operate();
+            pidControllerShooter = new PIDControllerShooter(kp, kV, kS);
+            pidControllerShooter.createSetPoint(2600);
+            pidControllerShooter.setProcessVariable(flywheelSubsystem.getRPM());
+            //intakeCommand.operate();
             feederCommand.operate();
 
 
 
 
+
             telemetry.addData("RPM: ", flywheelSubsystem.getRPM());
-            telemetry.addData("kP:", kp);
+            telemetry.addData("Error: ", 2600 -flywheelSubsystem.getRPM());
+            telemetry.addData("kP", kp);
             telemetry.addData("kff: ", kff);
             telemetry.addData("Step Size: ", stepSizes[stepIndex]);
-            telemetry.addData("Output", pidController.getOutput());
             telemetry.update();
 
 
@@ -67,15 +70,16 @@ public class ShooterTestTeleOp extends OpMode{
 
             if (gamepad1.right_trigger > 0.2){
 
-                flywheelSubsystem.setFlywheelPower(pidController.getOutput());
+                flywheelSubsystem.setFlywheelPower(pidControllerShooter.getOutput());
 
             }
             else if (gamepad1.dpad_down){
-                flywheelSubsystem.setFlywheelPower(-1);
+                flywheelSubsystem.setFlywheelPower(1);
             }
             else {
                 flywheelSubsystem.setFlywheelPower(0);
             }
+
 
 
             if(gamepad1.a && toggle1){
@@ -83,18 +87,18 @@ public class ShooterTestTeleOp extends OpMode{
                 toggle1 = false;
             }
             else if(gamepad1.b && toggle1){
-                kp -= stepSizes[stepIndex];
+                kp-= stepSizes[stepIndex];
                 toggle1 = false;
             } else if (!gamepad1.a && !gamepad1.b && !toggle1) {
                 toggle1 = true;
             }
 
             if(gamepad1.x && toggle2){
-                kff += stepSizes[stepIndex];
+                //kV += stepSizes[stepIndex];
                 toggle2 = false;
             }
             else if(gamepad1.y && toggle2){
-                kff -= stepSizes[stepIndex];
+                //kkV -= stepSizes[stepIndex];
                 toggle2 = false;
             } else if (!gamepad1.x && !gamepad1.y && !toggle2) {
                 toggle2 = true;

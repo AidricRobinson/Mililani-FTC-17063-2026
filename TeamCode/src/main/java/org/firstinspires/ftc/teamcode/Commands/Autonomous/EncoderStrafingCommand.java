@@ -13,11 +13,11 @@ public class EncoderStrafingCommand {
     Telemetry telemetry;
     LinearOpMode m_linearOpMode;
 
-    public EncoderStrafingCommand(MecanumDriveSubsystem mecanumDriveSubsystem, LinearOpMode linearOpMode) {
+    public EncoderStrafingCommand(MecanumDriveSubsystem mecanumDriveSubsystem, LinearOpMode linearOpMode, Telemetry telemetry) {
         this.mecanumDriveSubsystem = mecanumDriveSubsystem;
-        m_PIDController = new PIDController(0.000000000000000000091,0, 0, 15);
+        m_PIDController = new PIDController(.0009,0, 0,.07);
         m_linearOpMode = linearOpMode;
-
+       this.telemetry = telemetry;
     }
     public void EncoderDriveOperate(double distance, String direction){
         int motorTarget = (int) (distance * Constants.EncoderConstants.kCOUNTS_PER_INCH);
@@ -26,16 +26,20 @@ public class EncoderStrafingCommand {
         while (m_linearOpMode.opModeIsActive()) {
             m_PIDController.setProcessVariable(mecanumDriveSubsystem.encoderReading()[0]);
 
+            telemetry.addData("error:", m_PIDController.getError());
+            telemetry.update();
+
             if (Math.abs(m_PIDController.getError()) < 10) {
                 break;
             }
 
-            //double powerOutput = m_PIDController.getOutput();
-            double powerOutput = .25;
+            double powerOutput = m_PIDController.getOutput();
+
             mecanumDriveSubsystem.setLeftBackPower(-powerOutput);
             mecanumDriveSubsystem.setLeftFrontPower(powerOutput);
             mecanumDriveSubsystem.setRightBackPower(powerOutput);
             mecanumDriveSubsystem.setRightFrontPower(-powerOutput);
+
         }
         mecanumDriveSubsystem.shutdown();
     }

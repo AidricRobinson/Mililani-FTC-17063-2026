@@ -14,9 +14,10 @@ public class EncoderFeederCommand {
     }
     public void encoderFeederOperate(double power){
         startTime = elapsedTime.milliseconds();
-        while(elapsedTime.milliseconds() > startTime + 3000){
-            feederSubsystem.setPower(power);
-        }
+//        while(elapsedTime.milliseconds() > startTime + 3000){
+//            feederSubsystem.setPower(power);
+//        }
+        feederSubsystem.setPower(power);
     }
     public void shutdown()
     {

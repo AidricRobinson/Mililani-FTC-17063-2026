@@ -20,14 +20,14 @@ import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSubsystem;
 @Autonomous(name = "AutoMain", group = "LinearOpMode")
 public class AutoMain extends LinearOpMode {
     private FeederSubsystem feederSubsystem;
-    private FlowerSubsystem flowerSubsystem;
+    //private FlowerSubsystem flowerSubsystem;
     private FlywheelSubsystem flywheelSubsystem;
     private IntakeSubsystem intakeSubsystem;
     private MecanumDriveSubsystem mecanumDriveSubsystem;
 
     private EncoderDriveCommand encoderDriveCommand;
     private EncoderFeederCommand encoderFeederCommand;
-    private EncoderFlowerCommand encoderFlowerCommand;
+    //private EncoderFlowerCommand encoderFlowerCommand;
     private EncoderFlywheelCommand encoderFlywheelCommand;
     private EncoderStrafingCommand encoderStrafingCommand;
     private EncoderTurningCommand encoderTurningCommand;
@@ -43,33 +43,35 @@ public class AutoMain extends LinearOpMode {
        flywheelSubsystem = new FlywheelSubsystem(this);
        mecanumDriveSubsystem = new MecanumDriveSubsystem(this.hardwareMap, this);
        feederSubsystem = new FeederSubsystem(this);
-       flowerSubsystem = new FlowerSubsystem(this);
+       //flowerSubsystem = new FlowerSubsystem(this);
        intakeSubsystem = new IntakeSubsystem(this);
 
 
        encoderFeederCommand = new EncoderFeederCommand(feederSubsystem, elapsedTime);
-       encoderDriveCommand = new EncoderDriveCommand(mecanumDriveSubsystem, this);
+       encoderDriveCommand = new EncoderDriveCommand(mecanumDriveSubsystem, this, telemetry);
        encoderFlywheelCommand = new EncoderFlywheelCommand(flywheelSubsystem, elapsedTime);
-       encoderStrafingCommand = new EncoderStrafingCommand(mecanumDriveSubsystem,this);
-       encoderTurningCommand = new EncoderTurningCommand(mecanumDriveSubsystem,this);
+       encoderStrafingCommand = new EncoderStrafingCommand(mecanumDriveSubsystem,this, telemetry);
+       encoderTurningCommand = new EncoderTurningCommand(mecanumDriveSubsystem,this, telemetry);
        encoderIntakeCommand = new EncoderIntakeCommand(intakeSubsystem, elapsedTime);
 
         waitForStart();
-        //Initial shoot
-        encoderFlywheelCommand.EncoderFlywheelOperate(.5);
-        sleep(2000);
-        encoderFeederCommand.encoderFeederOperate(1);
-        sleep(4000);
-        encoderFlywheelCommand.shutdown();
-        encoderFeederCommand.shutdown();
 
-        //Move to garden
+        //Initial shoot
+        encoderFlywheelCommand.EncoderFlywheelOperate(.53);
+        sleep(2000);
+        encoderIntakeCommand.EncoderIntakeOperate(.45);
+        encoderFeederCommand.encoderFeederOperate(1);
+        sleep(5000);
+        encoderFlywheelCommand.shutdown();
+        encoderIntakeCommand.shutdown();
+        encoderFeederCommand.shutdown();
+//
+//        //Move to garden
         encoderDriveCommand.EncoderDriveOperate(-24, "BACKWARD");
         sleep(4000);
 
         encoderTurningCommand.EncoderTurningOperate(63.43, "RIGHT");
-        sleep(2000);
-        encoderTurningCommand.shutdown();
+
 
 
 
@@ -79,24 +81,24 @@ public class AutoMain extends LinearOpMode {
         encoderDriveCommand.EncoderDriveOperatePower(6, 0.2, "FORWARD");
         sleep(3000);
         encoderIntakeCommand.shutdown();
-
-        //Move to shoot again
+//
+//        //Move to shoot again
         encoderDriveCommand.EncoderDriveOperate(-12, "BACKWARD");
         encoderStrafingCommand.EncoderDriveOperate(12, "RIGHT");
         encoderTurningCommand.EncoderTurningOperate(101, "RIGHT");
         encoderDriveCommand.EncoderDriveOperate(124, "FORWARD");
         encoderTurningCommand.EncoderTurningOperate(169, "LEFT");
         encoderDriveCommand.EncoderDriveOperatePower(-6, 0.2, "BACKWARD");
-
-        //shoot
+//
+//        //shoot
         encoderFlywheelCommand.EncoderFlywheelOperate(.5);
         encoderFeederCommand.encoderFeederOperate(1);
         sleep(2000);
         encoderFeederCommand.shutdown();
         encoderFlywheelCommand.shutdown();
-
-
-        /*park*/
+//
+//
+//        /*park*/
         encoderDriveCommand.EncoderDriveOperate(48,"FORWARD");
         encoderStrafingCommand.EncoderDriveOperate(60,"RIGHT" );
 
