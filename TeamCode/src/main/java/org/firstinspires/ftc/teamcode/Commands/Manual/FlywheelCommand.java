@@ -23,7 +23,7 @@ public class FlywheelCommand {
         this.gamepad = gamepad;
         this.telemetry = telemetry;
 //        this.limeLightCommand = limeLightCommand;
-        this.pidControllerShooter = new PIDControllerShooter(0.0036, 0.00019, .002);
+        this.pidControllerShooter = new PIDControllerShooter(0.0016, 0.00019, .002);
         kP = .0000125;
         kFF = 1/5000.0;
         setPoint = 2600;//2650 maybe 2600 is 2350
