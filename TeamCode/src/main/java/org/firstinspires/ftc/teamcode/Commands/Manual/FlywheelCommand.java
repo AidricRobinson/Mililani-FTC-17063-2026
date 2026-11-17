@@ -14,8 +14,8 @@ public class FlywheelCommand {
     Telemetry telemetry;
     Gamepad gamepad;
 
-    private final double kP;
-    private final double kFF;
+//    private final double kP;
+//    private final double kFF;
     private final double setPoint;
 
     public FlywheelCommand(FlywheelSubsystem flywheelSubsystem, Gamepad gamepad,/*, Limelight limelight*/ Telemetry telemetry){
@@ -23,9 +23,9 @@ public class FlywheelCommand {
         this.gamepad = gamepad;
         this.telemetry = telemetry;
 //        this.limeLightCommand = limeLightCommand;
-        this.pidControllerShooter = new PIDControllerShooter(0.0016, 0.00019, .002);
-        kP = .0000125;
-        kFF = 1/5000.0;
+        this.pidControllerShooter = new PIDControllerShooter(0.0025, 0.00019, .002);
+//        kP = .0000125;
+//        kFF = 1/5000.0;
         setPoint = 2600;//2650 maybe 2600 is 2350
     }
     public void operate(){

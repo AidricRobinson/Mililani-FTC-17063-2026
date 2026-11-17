@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderFeederCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderFlowerCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderFlywheelCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderIntakeCommand;
+import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderShooterCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderStrafingCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderTurningCommand;
 import org.firstinspires.ftc.teamcode.Subsystems.FeederSubsystem;
@@ -32,6 +33,7 @@ public class AutoMain extends LinearOpMode {
     private EncoderStrafingCommand encoderStrafingCommand;
     private EncoderTurningCommand encoderTurningCommand;
     private EncoderIntakeCommand encoderIntakeCommand;
+    private EncoderShooterCommand encoderShooterCommand;
     private ElapsedTime elapsedTime;
 
     //add limelight when/if we get to it
@@ -47,6 +49,7 @@ public class AutoMain extends LinearOpMode {
        intakeSubsystem = new IntakeSubsystem(this);
 
 
+       encoderShooterCommand = new EncoderShooterCommand(intakeSubsystem, feederSubsystem, flywheelSubsystem, elapsedTime);
        encoderFeederCommand = new EncoderFeederCommand(feederSubsystem, elapsedTime);
        encoderDriveCommand = new EncoderDriveCommand(mecanumDriveSubsystem, this, telemetry);
        encoderFlywheelCommand = new EncoderFlywheelCommand(flywheelSubsystem, elapsedTime);
@@ -57,15 +60,16 @@ public class AutoMain extends LinearOpMode {
         waitForStart();
 
         //Initial shoot
-        encoderFlywheelCommand.EncoderFlywheelOperate(.53);
-        sleep(2000);
-        encoderIntakeCommand.EncoderIntakeOperate(.45);
-        encoderFeederCommand.encoderFeederOperate(1);
-        sleep(5000);
-        encoderFlywheelCommand.shutdown();
-        encoderIntakeCommand.shutdown();
-        encoderFeederCommand.shutdown();
-//
+        encoderShooterCommand.EncoderShooterOperate(5);
+//        encoderFlywheelCommand.EncoderFlywheelOperate(.53);
+//        sleep(2000);
+//        encoderIntakeCommand.EncoderIntakeOperate(.45);
+//        encoderFeederCommand.encoderFeederOperate(1);
+//        sleep(5000);
+//        encoderFlywheelCommand.shutdown();
+//        encoderIntakeCommand.shutdown();
+//        encoderFeederCommand.shutdown();
+
 //        //Move to garden
         encoderDriveCommand.EncoderDriveOperate(-24, "BACKWARD");
         sleep(4000);
@@ -91,11 +95,12 @@ public class AutoMain extends LinearOpMode {
         encoderDriveCommand.EncoderDriveOperatePower(-6, 0.2, "BACKWARD");
 //
 //        //shoot
-        encoderFlywheelCommand.EncoderFlywheelOperate(.5);
-        encoderFeederCommand.encoderFeederOperate(1);
-        sleep(2000);
-        encoderFeederCommand.shutdown();
-        encoderFlywheelCommand.shutdown();
+        encoderShooterCommand.EncoderShooterOperate(5);
+//        encoderFlywheelCommand.EncoderFlywheelOperate(.5);
+//        encoderFeederCommand.encoderFeederOperate(1);
+//        sleep(2000);
+//        encoderFeederCommand.shutdown();
+//        encoderFlywheelCommand.shutdown();
 //
 //
 //        /*park*/

@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderFeederCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderFlowerCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderFlywheelCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderIntakeCommand;
+import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderShooterCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderStrafingCommand;
 import org.firstinspires.ftc.teamcode.Commands.Autonomous.EncoderTurningCommand;
 import org.firstinspires.ftc.teamcode.Subsystems.FeederSubsystem;
@@ -31,6 +32,8 @@ public class AutoSupport extends LinearOpMode {
     private EncoderStrafingCommand encoderStrafingCommand;
     private EncoderTurningCommand encoderTurningCommand;
     private EncoderIntakeCommand encoderIntakeCommand;
+
+    private EncoderShooterCommand encoderShooterCommand;
     private ElapsedTime elapsedTime;
 
     //add limelight when/if we get to it
@@ -45,12 +48,16 @@ public class AutoSupport extends LinearOpMode {
         intakeSubsystem = new IntakeSubsystem(this);
 
 
+
         encoderFeederCommand = new EncoderFeederCommand(feederSubsystem, elapsedTime);
         encoderDriveCommand = new EncoderDriveCommand(mecanumDriveSubsystem, this, telemetry);
         encoderFlywheelCommand = new EncoderFlywheelCommand(flywheelSubsystem, elapsedTime);
         encoderStrafingCommand = new EncoderStrafingCommand(mecanumDriveSubsystem, this, telemetry);
         encoderTurningCommand = new EncoderTurningCommand(mecanumDriveSubsystem, this, telemetry  );
-        encoderIntakeCommand = new EncoderIntakeCommand(intakeSubsystem, elapsedTime)
+        encoderIntakeCommand = new EncoderIntakeCommand(intakeSubsystem, elapsedTime);
+
+        encoderShooterCommand = new EncoderShooterCommand(intakeSubsystem, feederSubsystem, flywheelSubsystem, elapsedTime);
+
         ;
 
         waitForStart();
@@ -58,14 +65,15 @@ public class AutoSupport extends LinearOpMode {
         //sleep(Constants.WaitTime.supportAutoWait);
 
         //shoot
-        encoderFlywheelCommand.EncoderFlywheelOperate(.5);
-        sleep(2000);
-        encoderIntakeCommand.EncoderIntakeOperate(.45);
-        encoderFeederCommand.encoderFeederOperate(1);
-        sleep(5000);
-        encoderFlywheelCommand.shutdown();
-        encoderIntakeCommand.shutdown();
-        encoderFeederCommand.shutdown();
+//        encoderFlywheelCommand.EncoderFlywheelOperate(.5);
+//        sleep(2000);
+//        encoderIntakeCommand.EncoderIntakeOperate(.45);
+//        encoderFeederCommand.encoderFeederOperate(1);
+//        sleep(5000);
+//        encoderFlywheelCommand.shutdown();
+//        encoderIntakeCommand.shutdown();
+//        encoderFeederCommand.shutdown();
+        encoderShooterCommand.EncoderShooterOperate(5);
 
         //park
         encoderDriveCommand.EncoderDriveOperate(-14, "BACKWARD");
